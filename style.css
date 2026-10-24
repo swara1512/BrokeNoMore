@@ -1,0 +1,113 @@
+/* 1. Colors and sizes live here. Change once, updates everywhere. */
+:root {
+  --bg: #f4f2ff;
+  --card: #ffffff;
+  --ink: #1d1b3a;
+  --muted: #7b7a94;
+  --line: #e8e6f5;
+  --primary: #5b4ddb;
+  --good: #1f9d63;
+  --bad: #d6455d;
+  --radius: 16px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* 2. Top bar */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 24px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+.logo { margin: 0; font-size: 20px; color: var(--primary); }
+.logo span { color: #f2b84b; }
+nav { display: flex; gap: 22px; }
+nav a { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; padding: 6px 0; }
+nav a.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+.avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--primary); color: #fff;
+  display: grid; place-items: center; font-weight: 600; font-size: 14px;
+}
+
+/* 3. Page layout */
+.container { max-width: 1000px; margin: 0 auto; padding: 24px 16px 48px; }
+.welcome { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 20px; }
+.welcome h2 { margin: 0 0 4px; font-size: 28px; }
+.welcome p { margin: 0; color: var(--muted); }
+
+select, input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+  color: var(--ink);
+}
+.welcome select { width: auto; }
+:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+
+/* 4. The three colored cards */
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 14px; }
+.card { padding: 18px; border-radius: var(--radius); }
+.card p { margin: 0 0 6px; font-weight: 500; font-size: 14px; }
+.card h3 { margin: 0; font-size: 28px; }
+.balance { background: #e4e0ff; }
+.income  { background: #dcf5e7; }
+.expense { background: #fde2e7; }
+
+/* 5. Panels in a 2-column grid */
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+.panel h3 { margin: 0 0 14px; font-size: 16px; }
+.panel-head { display: flex; justify-content: space-between; align-items: center; }
+.panel-head h3 { margin-bottom: 14px; }
+.muted { color: var(--muted); font-size: 13px; }
+
+/* 6. Budget bar */
+.budget-line { margin: 0 0 10px; font-size: 20px; }
+.bar { height: 10px; background: var(--line); border-radius: 6px; overflow: hidden; }
+#bar { height: 100%; width: 0; background: var(--primary); border-radius: 6px; transition: width .3s; }
+#bar.over { background: var(--bad); }
+
+
+/* 7. Transaction list */
+.tx-list { list-style: none; margin: 0; padding: 0; }
+.tx-list li { display: flex; align-items: center; gap: 12px; padding: 10px 0; border-top: 1px solid var(--line); }
+.tx-list li:first-child { border-top: 0; }
+.chip { width: 38px; height: 38px; border-radius: 10px; display: grid; place-items: center; font-size: 18px; flex: none; }
+.tx-info { flex: 1; min-width: 0; }
+.tx-info strong { display: block; font-size: 14px; }
+.tx-info small { color: var(--muted); }
+.tx-amt { text-align: right; font-weight: 600; }
+.tx-amt small { display: block; color: var(--muted); font-weight: 400; }
+.tx-amt.plus { color: var(--good); }
+.x { border: 0; background: none; color: var(--muted); font-size: 18px; cursor: pointer; padding: 4px 8px; }
+
+/* 8. Form + buttons */
+form label { display: block; font-size: 13px; color: var(--muted); margin: 12px 0 4px; }
+.toggle { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.toggle button { border: 0; background: #fff; padding: 10px; font: inherit; font-weight: 500; cursor: pointer; color: var(--muted); }
+.toggle button.active { background: var(--primary); color: #fff; }
+.primary { width: 100%; margin-top: 8px; padding: 12px; border: 0; border-radius: 10px; background: var(--primary); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+.ghost { margin-top: 14px; padding: 8px 14px; border: 1px solid var(--line); background: #fff; border-radius: 10px; font: inherit; cursor: pointer; }
+.link { border: 0; background: none; color: var(--primary); font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.error { color: var(--bad); font-size: 13px; min-height: 18px; margin: 8px 0 0; }
+
+/* 9. Mobile: stack everything */
+@media (max-width: 720px) {
+  .cards, .grid { grid-template-columns: 1fr; }
+  nav { display: none; }
+  .welcome h2 { font-size: 22px; }
+}
